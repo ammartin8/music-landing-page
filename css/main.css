@@ -4,11 +4,58 @@
 
 body {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
 }
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/**Header and Nav**/
+header {
+    /* display: block; */
+    /* position: fixed; */
+    width: 100%;
+    z-index: 2;
+    background-color: #000;
+    height: 3em;
+}
+
+nav.main-nav {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+ul.main-links {
+    display: flex;
+    width: 100%;
+}
+
+ul.main-links > * {
+    padding: .5em 2em;
+    font-size: 1.2em;
+}
+
+li.logo {
+    flex-grow: 2;
+}
+
+/* Main Content */
 
 .panels {
     display: flex;
     min-height: 100vh;
+    margin-top: 3.0em;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+
 }
 
 .panel {
@@ -29,23 +76,29 @@ body {
 
 
 .panel1 {
-    background-image: url("https://source.unsplash.com/400x1000/?hip hop");
+    background-image: url("../img/pic5.jpg");
+    
 }
 
 .panel2 {
-    background-image: url("https://source.unsplash.com/400x1000/?music concert");
+    background-image: url("../img/pic3.jpg");
+    /* order: 1; Reorders the panels */
 }
 
 .panel3 {
-    background-image: url("https://source.unsplash.com/400x1000/?street concert");
+    background-image: url("../img/pic4.jpg");
 }
 
 .panel4 {
-    background-image: url("https://source.unsplash.com/400x1000/?music,rap");
+    background-image: url("../img/pic2.jpg");
+}
+
+.panel5 {
+    background-image: url("../img/pic1.jpg");
 }
 
 .panel p {
-  font-size: 4em;
+  font-size: 2em;
   color: #fff;
   align-self: center;
 }
@@ -83,16 +136,14 @@ body {
 /*Footer*/
 footer {
     display: flex;
-    position: fixed;
-    z-index: 2;
+    z-index: 2; 
     width:100%;
-    height:100px;
-    margin-top: -50px;
-    background-color: navy;
+    height: 75px;
+    background-color: #000;
+    align-items: center;
 }
 
 .footer-text {
-    margin-top: 1em;
     width: 100%;
     color: #fff;
     text-align: center;
