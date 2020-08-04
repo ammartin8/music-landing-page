@@ -4,11 +4,8 @@
 
 body {
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
 }
 
 a {
@@ -17,11 +14,10 @@ a {
 }
 
 /**Header and Nav**/
-header {
-    /* display: block; */
-    /* position: fixed; */
+header#navbar-section {
+    grid-area: nav;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
     background-color: #000;
     height: 3em;
 }
@@ -37,7 +33,7 @@ ul.main-links {
     width: 100%;
 }
 
-ul.main-links > * {
+ul.main-links>* {
     padding: .5em 2em;
     font-size: 1.2em;
 }
@@ -47,13 +43,30 @@ li.logo {
 }
 
 /* Main Content */
+div#main-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: .5fr 3fr .5fr;
+    grid-template-areas:
+        'nav   '
+        'panels'
+        'footer'
+    ;
+    min-height: 100vh;
+    max-height: 100vh;
+    justify-content: center;
+}
 
 .panels {
-    display: flex;
-    min-height: 100vh;
+    grid-area: panels;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas:
+        'panel1 panel2 panel3 panel4 panel5'
+    ;
+    height: 100%;
     margin-top: 3.0em;
     position: fixed;
-    z-index: 1;
     width: 100%;
 
 }
@@ -65,45 +78,49 @@ li.logo {
     background-position: center;
     justify-content: center;
     align-items: center;
+    min-height: 100%;
     text-align: center;
-    flex: 1 ;
+    flex: 1;
     transition:
         font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
         flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
         background 0.2s;
-    }
+}
 
 
 
 .panel1 {
+    grid-area: panel1;
     background-image: url("../img/pic5.jpg");
-    
 }
 
 .panel2 {
+    grid-area: panel2;
     background-image: url("../img/pic3.jpg");
-    /* order: 1; Reorders the panels */
 }
 
 .panel3 {
+    grid-area: panel3;
     background-image: url("../img/pic4.jpg");
 }
 
 .panel4 {
+    grid-area: panel4;
     background-image: url("../img/pic2.jpg");
 }
 
 .panel5 {
+    grid-area: panel5;
     background-image: url("../img/pic1.jpg");
 }
 
 .panel p {
-  font-size: 2em;
-  color: #fff;
-  align-self: center;
+    font-size: 2em;
+    color: #fff;
+    align-self: center;
 }
 
-.panel > * {
+.panel>* {
     margin: 0;
     width: 100%;
     transition: transform .5s;
@@ -112,19 +129,19 @@ li.logo {
     align-items: center;
 }
 
-.panel > *:first-child {
+.panel>*:first-child {
     transform: translateY(-100%);
 }
 
-.panel.open-active > *:first-child {
+.panel.open-active>*:first-child {
     transform: translateY(0%)
 }
 
-.panel > *:last-child {
+.panel>*:last-child {
     transform: translateY(100%);
 }
 
-.panel.open-active > *:last-child {
+.panel.open-active>*:last-child {
     transform: translateY(0%);
 }
 
@@ -134,17 +151,150 @@ li.logo {
 }
 
 /*Footer*/
-footer {
+footer#footer-section {
+    grid-area: footer;
     display: flex;
-    z-index: 2; 
-    width:100%;
-    height: 75px;
+    z-index: 2;
     background-color: #000;
     align-items: center;
 }
 
-.footer-text {
+span.footer-text {
     width: 100%;
     color: #fff;
     text-align: center;
+}
+
+/*Small Screens*/
+@media (max-width: 600px) {
+
+    div#main-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-areas:
+            'nav   '
+            'panels'
+            'panels'
+            'panels'
+            'panels'
+            'panels'
+            'footer'
+        ;
+        min-height: 100vh;
+        max-height: 100vh;
+        justify-items: center;
+        justify-content: center;
+    }
+
+    header#navbar-section {
+        grid-area: nav;
+    }
+
+    .panels {
+        grid-area: panels;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-areas:
+            'panel1'
+            'panel2'
+            'panel3'
+            'panel4'
+            'panel5'
+        ;
+        position: fixed;
+        z-index: 1;
+        height: 100vh;
+    }
+
+    .panel {
+        display: flex;
+        flex-direction: column;
+        background-size: cover;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        text-align: center;
+        flex: 1;
+        transition:
+            font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+            flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+            background 0.2s;
+    }
+
+
+    .panel1 {
+        grid-area: panel1;
+        background-image: url("../img/pic5.jpg");
+        background-position: center 55%;
+    }
+
+    .panel2 {
+        grid-area: panel2;
+        background-image: url("../img/pic3.jpg");
+        background-position: center 30%;
+    }
+
+    .panel3 {
+        grid-area: panel3;
+        background-image: url("../img/pic4.jpg");
+        background-position: center 35%;
+    }
+
+    .panel4 {
+        grid-area: panel4;
+        background-image: url("../img/pic2.jpg");
+        background-position: center 25%;
+    }
+
+    .panel5 {
+        grid-area: panel5;
+        background-image: url("../img/pic1.jpg");
+        background-position: center 45%;
+    }
+
+  
+
+    footer#footer-section {
+        grid-area: footer;
+        z-index: 1;
+        width: 100%;
+        height: 60px;
+        background-color: #000;
+        align-self: end;
+    }
+
+    /*TODO
+1. Adjust word panels so they come in from the side*/
+    .panel>* {
+        margin: 0;
+        width: 100%;
+        transition: transform .5s;
+        flex: 1 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .panel>*:first-child {
+        transform: translateX(-80%);
+    }
+
+    .panel.open-active>*:first-child {
+        transform: translateX(-20%)
+    }
+
+    .panel>*:last-child {
+        transform: translateX(80%);
+    }
+
+    .panel.open-active>*:last-child {
+        transform: translateX(20%);
+    }
+
+    .panel.open {
+        font-size: 1.0em;
+        flex: 5;
+    }
+
 }
