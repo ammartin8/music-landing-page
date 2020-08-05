@@ -35,7 +35,7 @@ The following technologies are used to build this application:
 3. Add navigation bar and footer ✔️
 4. Design and add logo to navigation bar ✔️
 5. Refactor website to be responsive using CSS grid ✔️
-6. Collaspe navigation links to menu bar image and show links below nav bar on click of menu
+6. Collaspe navigation links to menu bar image and show links below nav bar on click of menu ✔️
 
 ## Requirements to Run Application
 
